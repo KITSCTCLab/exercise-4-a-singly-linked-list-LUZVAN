@@ -1,6 +1,4 @@
 from typing import Optional
-
-
 class Node:
     """
     Provide necessary documentation
@@ -72,8 +70,40 @@ class LinkedList:
             elements.append(current.data)
             current = current.next
         print(elements)
-        
-        
+
+
+class Solution:
+    """
+    Class implementing functions to add numbers in a LinkedListT
+    
+    """
+
+    def addTwoNumbers(self, first_list: Optional[LinkedList], second_list: Optional[LinkedList]) -> Optional[
+        LinkedList]:
+        """
+        :param first_list: Linkedlist with non-negative integers
+        :param second_list: Linkedlist with non-negative integers
+        :return: returns the sum as a linked list
+        """
+        result = self.get_num(first_list) + self.get_num(second_list)
+        sum_list = LinkedList()
+        for digit in list(map(int, str(result)[::-1])):
+            sum_list.insert_at_end(digit)
+        return sum_list
+
+    def get_num(self, l: Optional[LinkedList]) -> int:
+        """
+        :param l: LinkedList with non-negative integers
+        :return: returns digits of the list as a single integer
+        """
+        curr = l.head
+        if curr is None:
+            return 0
+        num = ""
+        while curr is not None:
+            num = str(curr.data) + num
+            curr = curr.next
+        return int(num)
 
 # Do not edit the following code      
 # Create an instance for LinkedList
